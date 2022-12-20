@@ -9,25 +9,40 @@ class Solution
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
-	    stack<int> stk;
-	    vector<int> vis(V,0),ans;
-	    for(int i=0;i<V;i++){
-	        if(vis[i]==0)topoSort(i,adj,stk,vis);
-	    }
-	    while(!stk.empty()){
-	        ans.push_back(stk.top());
-	        stk.pop();
-	    }
-	    return ans;
-	    
-	}
-	void topoSort(int V, vector<int> adj[],stack<int>& stk,vector<int>& vis){
-	    if(vis[V]==1)return;
-	    vis[V]=1;
-	    for(auto i: adj[V]){
-	        topoSort(i,adj,stk,vis);
-	    }
-	    stk.push(V);
+	    // code here
+	    vector<int> inDeg(V, 0);
+     for (int i = 0; i < V; i++)
+     {
+          for (auto j : adj[i])
+          {
+               inDeg[j]++;
+          }
+     }
+     queue<int> bfs;
+     for (int i = 0; i < V; i++)
+     {
+          if (inDeg[i] == 0)
+               bfs.push(i);
+     }
+     vector<int> ans;
+     while (!bfs.empty())
+     {
+          int val = bfs.front();
+          bfs.pop();
+          for (auto i : adj[val])
+          {
+               if (inDeg[i] > 0)
+               {
+                    inDeg[i]--;
+                    if (inDeg[i] == 0)
+                    {
+                         bfs.push(i);
+                    }
+               }
+          }
+          ans.push_back(val);
+     }
+     return ans;
 	}
 };
 
