@@ -30,7 +30,7 @@ public:
         // Write your code 
          sort(stalls.begin(), stalls.end());
          int s = 1;
-          int e = stalls[n - 1] - stalls[0];
+          int e = stalls[n - 1] ;
           while (s <= e)
           {
                int m = s + (e - s) / 2;
