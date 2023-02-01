@@ -12,18 +12,19 @@ public:
 	int print2largest(int arr[], int n) {
 	    // code here
 	    int ans=INT_MIN;
-	    unordered_set<int> sett;
-	    for(int i=0;i<n;i++){
-	        sett.insert(arr[i]);
-	    }
+	   // unordered_set<int> sett;
+	   // for(int i=0;i<n;i++){
+	   //     sett.insert(arr[i]);
+	   // }
 	    int temp=INT_MIN;
-	    for(int i:sett){
-	        if(i>ans){
+	    for(int i=0;i<n;i++){
+	        if(arr[i]>ans){
 	            temp=ans;
-	            ans=i;
+	            ans=arr[i];
 	        }
 	        else {
-	            temp=max(temp,i);
+	            if(arr[i]<ans)
+	            temp=max(temp,arr[i]);
 	        }
 	    }
 	    return temp==INT_MIN?-1:temp;
